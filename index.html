@@ -1,0 +1,39 @@
+<script type="text/javascript">
+
+if((navigator.userAgent.indexOf("Safari") != -1) || ((navigator.userAgent.indexOf("MSIE") != -1 ) ||
+(!!document.documentMode == true ))){
+
+    var urlParams = window.location.search.substr(1).split('&').reduce(function (q, query) {
+    var chunks = query.split('=');
+    var key = decodeURI(chunks[0]);
+    var value = chunks[1];
+    return (q[key] = value, q);
+    }, {});
+
+    urlParams.has = function(param){
+    console.log(param);
+    if(param in urlParams){
+    return true;
+    }else{
+    return false;
+    }
+    },
+
+    urlParams.get = function(param){
+        param = decodeURI(param);
+        console.log(param);
+    if(param in urlParams){
+    return urlParams[param];
+    }else{
+    return null;
+    }
+    }
+
+}else{
+    var urlParams = new URLSearchParams(location.search);
+}
+
+console.log(urlParams);
+console.log(urlParams.get("cat_id"));
+    
+</script>
